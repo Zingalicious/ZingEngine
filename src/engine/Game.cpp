@@ -8,20 +8,24 @@
 #include "engine/Game.hpp"
 #include "util/render/Screen.hpp"
 
-Game::Game() {
-	// TODO Auto-generated constructor stub
+Game* Game::instance_;
 
+Game::Game(GLFWwindow* window)
+{
+	instance_ = this;
+	this->window = window;
 }
 
 Game::~Game() {
 	// TODO Auto-generated destructor stub
 }
 
-static Game& Game::instance()
+Game& Game::instance()
 {
-	if(instance_ == nullptr)
-	{
-		instance_ = new Game();
-	}
-	return instance_;
+	return *instance_;
+}
+
+void Game::run()
+{
+
 }

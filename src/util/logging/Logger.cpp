@@ -5,7 +5,7 @@
  *      Author: Zingten
  */
 
-#include "Logger.hpp"
+#include "util/logging/Logger.hpp"
 #include <iostream>
 
 Logger::Logger()
@@ -20,5 +20,5 @@ Logger::~Logger()
 
 void Logger::log(LogLevel level, std::string message)
 {
-	std::cout << "[" + level + "] " + message;
+	std::cout << "[" << level << "] " << message;
 }

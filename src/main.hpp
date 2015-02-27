@@ -13,7 +13,7 @@
  * @param argc Array of arguments.
  * @return Exit code of program.
  */
-int main(int argv, char* argc[]);
+int main(int argv, char* const argc[]);
 
 
 #endif /* MAIN_HPP_ */

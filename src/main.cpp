@@ -11,7 +11,7 @@
 #include <GLFW/glfw3.h>
 #include "util/render/Screen.hpp"
 
-int main(int argv, char* argc[])
+int main(int argv, char* const argc[])
 {
 	if(!glfwInit())
 	{
@@ -29,7 +29,9 @@ int main(int argv, char* argc[])
 	glfwMakeContextCurrent(window);
 	glfwSwapInterval(1);
 
-	Game game = Game::instance();
+	Game* game = new Game(window);
+
+	game->run();
 
 	delete game;
 
