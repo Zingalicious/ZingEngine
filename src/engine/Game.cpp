@@ -6,6 +6,7 @@
  */
 
 #include "engine/Game.hpp"
+#include "util/logging/Logger.hpp"
 #include "util/render/Screen.hpp"
 
 Game* Game::instance_;
@@ -14,10 +15,14 @@ Game::Game(GLFWwindow* window)
 {
 	instance_ = this;
 	this->window = window;
+	logger_ = new Logger();
+	state = NONE;
+	inputManager_ = new InputManager();
 }
 
 Game::~Game() {
-	// TODO Auto-generated destructor stub
+	delete logger_;
+	delete inputManager_;
 }
 
 Game& Game::instance()
@@ -25,7 +30,16 @@ Game& Game::instance()
 	return *instance_;
 }
 
-void Game::run()
+bool Game::run()
 {
+	bool gameShouldClose = false;
 
+	logger_->log(DEBUG, "no");
+	while(!glfwWindowShouldClose(window) && !gameShouldClose)
+	{
+		//EVERYTHANG
+		gameShouldClose = true;
+	}
+	logger_->log(DEBUG, "test");
+	return true;
 }

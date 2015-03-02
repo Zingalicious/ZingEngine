@@ -39,7 +39,7 @@ public:
 
 	/*! Main loop of Game- where the magic happens.
 	 */
-	void run();
+	bool run();
 
 	/*! Change the window of the Game.
 	 * @param window New window to display the game in.

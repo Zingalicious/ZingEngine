@@ -1,0 +1,15 @@
+Try to make algorithms self contained and not bouncing through pointers
+Keep data needed in succession next to eachother in memory (one array if possible)
+	prefetch data to cpu cache
+
+	Network				slow
+	File System
+	RAM
+	RAM Row Banks
+	CPU Cache 3
+	CPU Cache 2
+	CPU Cache 1
+	CPU					fast
+	
+Don't worry about DOD for game logic, some AI (higher levels)
+	Mix with OOP

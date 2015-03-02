@@ -8,6 +8,8 @@
 #ifndef ENGINE_INPUT_INPUTMANAGER_HPP_
 #define ENGINE_INPUT_INPUTMANAGER_HPP_
 
+#include <GLFW/glfw3.h>
+
 class InputManager
 {
 public:

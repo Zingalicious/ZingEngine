@@ -5,14 +5,16 @@
  *      Author: Zingten
  */
 
-#include "main.hpp"
 #include "engine/Game.hpp"
 #include <stdlib.h>
+#include <iostream>
 #include <GLFW/glfw3.h>
 #include "util/render/Screen.hpp"
 
 int main(int argv, char* const argc[])
 {
+	std::cout << "test";
+
 	if(!glfwInit())
 	{
 		exit(EXIT_FAILURE);
@@ -31,13 +33,23 @@ int main(int argv, char* const argc[])
 
 	Game* game = new Game(window);
 
-	game->run();
+	int exitType;
+
+	if(!game->run())
+	{
+		exitType = EXIT_FAILURE;
+	}
+	else
+	{
+
+		exitType = EXIT_SUCCESS;
+	}
 
 	delete game;
 
 	glfwDestroyWindow(window);
 	glfwTerminate();
-	exit(EXIT_SUCCESS);
+	exit(exitType);
 }
 
 
