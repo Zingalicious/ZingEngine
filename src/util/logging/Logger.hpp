@@ -19,13 +19,19 @@ class Logger
 {
 public:
 	Logger();
-	~Logger();
+	virtual ~Logger();
 
 	/*!Log a message to this logger's log.
 	 * @param level Level of message.
 	 * @param message The message.
 	 */
-	void log(LogLevel level, std::string message);
+	virtual void log(LogLevel level, std::string message);
+
+    /*! Error callback for GLFW.
+     * @param error Error code.
+     * @param description Description of error.
+     */
+	static void glfw_error_callback(int error, const char* description);
 };
 
 

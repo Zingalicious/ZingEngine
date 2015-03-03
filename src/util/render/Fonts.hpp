@@ -8,7 +8,19 @@
 #ifndef UTIL_RENDER_FONTS_HPP_
 #define UTIL_RENDER_FONTS_HPP_
 
+#include <ft2build.h>
+#include FT_FREETYPE_H
 
+class FontLibrary
+{
+private:
+    FT_Library ft;
+
+public:
+    FontLibrary();
+
+
+};
 
 
 

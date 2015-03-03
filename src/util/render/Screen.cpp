@@ -30,15 +30,32 @@ void Screen::getResolution(int* w, int* h, GLFWmonitor* monitor)
 	*h = maxHeight;
 }
 
-GLFWwindow* Screen::initWindow()
+GLFWwindow* Screen::initWindow(ScreenMode mode)
 {
 	GLFWwindow* window;
-	GLFWmonitor* monitor = glfwGetPrimaryMonitor();
 	int rw;
 	int rh;
-	getResolution(&rw, &rh, monitor);
-	const GLFWvidmode* mode = glfwGetVideoMode(monitor);
-	glfwWindowHint(GLFW_REFRESH_RATE, mode->refreshRate);
-	window = glfwCreateWindow(rw, rh, "ZingEngine", monitor, NULL);
+	if(mode == FULLSCREEN)
+    {
+        GLFWmonitor* monitor = glfwGetPrimaryMonitor();
+        getResolution(&rw, &rh, monitor);
+        const GLFWvidmode* mode = glfwGetVideoMode(monitor);
+        glfwWindowHint(GLFW_REFRESH_RATE, mode->refreshRate);
+        window = glfwCreateWindow(rw, rh, "ZingEngine", monitor, NULL);
+    }
+    else if(mode == BORDERLESS)
+    {
+        GLFWmonitor* monitor = glfwGetPrimaryMonitor();
+        const GLFWvidmode* mode = glfwGetVideoMode(monitor);
+        glfwWindowHint(GLFW_RED_BITS, mode->redBits);
+        glfwWindowHint(GLFW_GREEN_BITS, mode->greenBits);
+        glfwWindowHint(GLFW_BLUE_BITS, mode->blueBits);
+        glfwWindowHint(GLFW_REFRESH_RATE, mode->refreshRate);
+        window = glfwCreateWindow(mode->width, mode->height, "ZingEngine", monitor, NULL);
+    }
+    else
+    {
+        window = glfwCreateWindow(800, 600, "ZingEngine", NULL, NULL);
+    }
 	return window;
 }

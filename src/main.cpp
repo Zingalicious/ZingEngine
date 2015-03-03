@@ -7,31 +7,15 @@
 
 #include "engine/Game.hpp"
 #include <stdlib.h>
-#include <iostream>
-#include <GLFW/glfw3.h>
-#include "util/render/Screen.hpp"
 
 int main(int argv, char* const argc[])
 {
-	std::cout << "test";
-
 	if(!glfwInit())
 	{
 		exit(EXIT_FAILURE);
 	}
 
-	GLFWwindow* window = Screen::initWindow();
-
-	if(!window)
-	{
-		glfwTerminate();
-		exit(EXIT_FAILURE);
-	}
-
-	glfwMakeContextCurrent(window);
-	glfwSwapInterval(1);
-
-	Game* game = new Game(window);
+	Game* game = new Game();
 
 	int exitType;
 
@@ -47,8 +31,6 @@ int main(int argv, char* const argc[])
 
 	delete game;
 
-	glfwDestroyWindow(window);
-	glfwTerminate();
 	exit(exitType);
 }
 

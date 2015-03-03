@@ -10,6 +10,11 @@
 
 #include <GLFW/glfw3.h>
 
+enum ScreenMode
+{
+    FULLSCREEN, BORDERLESS, NORMAL
+};
+
 namespace Screen
 {
 	/*! Gets the max resolution of a GLFWmonitor.
@@ -22,7 +27,7 @@ namespace Screen
 	/*! Initializes a GLFWwindow.
 	 * @return The window.
 	 */
-	GLFWwindow* initWindow();
+	GLFWwindow* initWindow(ScreenMode mode);
 }
 
 

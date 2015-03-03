@@ -20,5 +20,21 @@ Logger::~Logger()
 
 void Logger::log(LogLevel level, std::string message)
 {
-	std::cout << "[" << level << "] " << message;
+    std::string levelDescription = "NULL";
+    switch(level)
+    {
+    case SEVERE:
+        levelDescription = "SEVERE";
+        break;
+    case WARNING:
+        levelDescription = "WARNING";
+        break;
+    case INFO:
+        levelDescription = "INFO";
+        break;
+    case DEBUG:
+        levelDescription = "DEBUG";
+        break;
+    }
+	std::cout << "[" << levelDescription << "] " << message;
 }

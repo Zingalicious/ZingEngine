@@ -8,21 +8,42 @@
 #include "engine/Game.hpp"
 #include "util/logging/Logger.hpp"
 #include "util/render/Screen.hpp"
+#include <stdlib.h>
+#include <map>
+#include <sstream>
 
 Game* Game::instance_;
 
-Game::Game(GLFWwindow* window)
+Game::Game()
 {
+    //Initialize window.
+	GLFWwindow* window = Screen::initWindow(NORMAL);
+
+	if(!window)
+	{
+		glfwTerminate();
+		exit(EXIT_FAILURE);
+	}
+
+	glfwMakeContextCurrent(window);
+	glfwSwapInterval(1);
+
+	//Initialize services.
 	instance_ = this;
 	this->window = window;
-	logger_ = new Logger();
+	console_ = new Console();
 	state = NONE;
-	inputManager_ = new InputManager();
+	inputManager_ = new InputManager(window);
 }
 
 Game::~Game() {
-	delete logger_;
+    //Delete services.
+	delete console_;
 	delete inputManager_;
+
+	//Delete GLFW.
+	glfwDestroyWindow(window);
+	glfwTerminate();
 }
 
 Game& Game::instance()
@@ -30,16 +51,23 @@ Game& Game::instance()
 	return *instance_;
 }
 
+Console& Game::console()
+{
+    return *console_;
+}
+
 bool Game::run()
 {
-	bool gameShouldClose = false;
+	shouldClose_ = false;
 
-	logger_->log(DEBUG, "no");
-	while(!glfwWindowShouldClose(window) && !gameShouldClose)
+	while(!glfwWindowShouldClose(window) && !shouldClose_)
 	{
-		//EVERYTHANG
-		gameShouldClose = true;
+	    glfwPollEvents();
 	}
-	logger_->log(DEBUG, "test");
 	return true;
+}
+
+void Game::shouldClose()
+{
+    shouldClose_ = true;
 }

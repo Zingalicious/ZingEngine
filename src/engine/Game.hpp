@@ -9,7 +9,7 @@
 #define ENGINE_GAME_HPP_
 
 #include <GLFW/glfw3.h>
-#include "util/logging/Logger.hpp"
+#include "util/logging/Console.hpp"
 #include "engine/input/InputManager.hpp"
 
 enum GameState
@@ -23,13 +23,14 @@ private:
 	static Game* instance_;
 	GLFWwindow* window;
 	GameState state;
-	Logger* logger_;
+	Console* console_;
 	InputManager* inputManager_;
+	bool shouldClose_;
 public:
 	/*! Create a game instance in a GLFWwindow.
 	 * @param window The window to display the game in.
 	 */
-	Game(GLFWwindow* window);
+	Game();
 	~Game();
 
 	/*! Get the Game instance.
@@ -41,10 +42,12 @@ public:
 	 */
 	bool run();
 
-	/*! Change the window of the Game.
-	 * @param window New window to display the game in.
+	/*! Returns the console.
+	 * @return Console The console.
 	 */
-	void setWindow(GLFWwindow* window);
+	Console& console();
+
+	void shouldClose();
 };
 
 #endif /* ENGINE_GAME_HPP_ */
